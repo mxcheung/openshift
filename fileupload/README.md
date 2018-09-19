@@ -6,7 +6,3 @@ As an added bonus, this repo can also be deployed directly as a docker container
 
 
 What, you don't have OpenShift 3 yet? Fix that immediately: www.openshift.org/vm
-
-http://websystique.com/springmvc/spring-mvc-4-file-upload-example-using-commons-fileupload/
-
-http://websystique.com/springmvc/spring-mvc-4-fileupload-download-hibernate-example/

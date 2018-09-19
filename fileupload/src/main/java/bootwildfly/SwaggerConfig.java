@@ -32,7 +32,7 @@ public class SwaggerConfig {
     @Bean
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)
-          .groupName("FieUpload")
+          .groupName("OpenWildFly")
           .forCodeGeneration(true)
           .select()                                  
           .apis(RequestHandlerSelectors.any())              
