@@ -1,4 +1,4 @@
-package bootwildfly;
+package fileuploadconsole.model;
 
 import java.util.List;
 

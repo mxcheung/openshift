@@ -1,10 +1,13 @@
-package bootwildfly;
+package fileuploadconsole.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import fileuploadconsole.model.ReportSummary;
+import fileuploadconsole.model.ReportTable;
 
 @Service
 public class ReportServiceImpl implements ReportService {
