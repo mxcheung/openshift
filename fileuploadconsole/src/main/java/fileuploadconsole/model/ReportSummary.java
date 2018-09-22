@@ -9,13 +9,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({ "reports" })
 public class ReportSummary {
 
-    private List< ReportTable> reports;
+    private List< FileEntity> reports;
 
-	public List<ReportTable> getReports() {
+	public List<FileEntity> getReports() {
 		return reports;
 	}
 
-	public void setReports(List<ReportTable> reports) {
+	public void setReports(List<FileEntity> reports) {
 		this.reports = reports;
 	}
 
