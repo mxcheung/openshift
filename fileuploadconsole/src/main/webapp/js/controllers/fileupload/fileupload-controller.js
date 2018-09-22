@@ -1,11 +1,11 @@
-app.controller('FileUploadController', function($scope, $location, $route, $routeParams) {
+app.controller('FileUploadController', function($scope, $location, $route, $routeParams, FileUploadService) {
 
 	
-	$scope.data = {
-			   row1: [ "Sample_PDF.pdf", "application pdf", "Sample PDF file" ],
-			   row2: ["Sample_image.png", "imaghe/png", "Picture file" ],
-			   row3: ["Sample_zip.zip", "application/x-zip-compressed", "Zip file" ]
-			};
-	
-	
+	var cat = FileUploadService.getFileUploadSummary();
+	cat.then(function(response) {
+		$scope.data = response.data;// don't forget "this" in the service
+	})
+
+
+
 });

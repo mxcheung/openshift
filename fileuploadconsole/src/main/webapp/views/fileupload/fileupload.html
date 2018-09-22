@@ -22,13 +22,12 @@
 						</tr>
 			    	</thead>
 		    		<tbody>
-						<tr ng-repeat="n in data">
+						<tr ng-repeat="row in data.reports">
 
     						<td>{{$index+1}}</td>
-            				<td>{{n[0]}}</td>
-            				<td>{{n[1]}}</td>
-            				<td>{{n[2]}}</td>
-
+            				<td>{{row.fileName}}</td>
+            				<td>{{row.fileType}}</td>
+            				<td>{{row.description}}</td>
 							<td><a href="<c:url value='/download-document-${user.id}-${doc.id}' />" class="btn btn-success custom-width">download</a></td>
 							<td><a href="<c:url value='/delete-document-${user.id}-${doc.id}' />" class="btn btn-danger custom-width">delete</a></td>
 						</tr>
