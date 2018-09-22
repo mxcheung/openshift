@@ -34,6 +34,11 @@ var app = angular.module('ToDoListApp', [
 					controller: 'ThereController',
 					templateUrl: '/views/there/there.html'
 				})
+				.when('/fileupload',
+				{
+					controller: 'FileUploadController',
+					templateUrl: '/views/fileupload/fileupload.html'
+				})
 				.when('/demo',
 				{
 					controller: 'DemoController',
