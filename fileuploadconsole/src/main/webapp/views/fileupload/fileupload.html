@@ -33,6 +33,7 @@
 					<thead>
 						<tr>
 							<th>No.</th>
+							<th>Value Date</th>
 							<th>File Name</th>
 							<th>Type</th>
 							<th>Description</th>
@@ -44,6 +45,7 @@
 						<tr ng-repeat="row in data.reports">
 
 							<td>{{$index+1}}</td>
+							<td>{{row.valueDate}}</td>
 							<td>{{row.fileName}}</td>
 							<td>{{row.fileType}}</td>
 							<td>{{row.description}}</td>
