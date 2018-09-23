@@ -23,7 +23,7 @@ public class ReportRestController {
 
 
 	@RequestMapping(params = {"enquiryDate"}, method = RequestMethod.GET, path = "/file-upload")
-	public ReportSummary getAccountCashBalanceSummary(@RequestParam("enquiryDate") @DateTimeFormat(iso = ISO.DATE) LocalDate enquiryDate) {
+	public ReportSummary getFileUploadSummary(@RequestParam("enquiryDate") @DateTimeFormat(iso = ISO.DATE) LocalDate enquiryDate) {
 		return reportService.getFileUploadSummary(enquiryDate);
 	}
 
