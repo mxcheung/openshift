@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import fileuploadconsole.model.FileEntity;
 import fileuploadconsole.model.ReportSummary;
@@ -61,6 +62,12 @@ public class ReportServiceImpl implements ReportService {
 		report.setFileType(fileType);
 		report.setDescription(description);
 		return report;
+	}
+
+	@Override
+	public ReportSummary uploadFileUploadSummary(MultipartFile uploadfile) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

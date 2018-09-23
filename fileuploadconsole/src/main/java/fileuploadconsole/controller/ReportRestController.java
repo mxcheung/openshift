@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import fileuploadconsole.model.ReportSummary;
 import fileuploadconsole.service.ReportService;
@@ -34,5 +35,13 @@ public class ReportRestController {
     	reportService.delete(fileId);
     }
 
+
+	@RequestMapping(params = {"enquiryDate"}, method = RequestMethod.POST, path = "/file-upload")
+	public ReportSummary uploadFileUploadSummary(
+			@RequestParam(value = "file", required = true) MultipartFile uploadfile
+			) {
+		return reportService.uploadFileUploadSummary(uploadfile);
+	}
+	
 
 }

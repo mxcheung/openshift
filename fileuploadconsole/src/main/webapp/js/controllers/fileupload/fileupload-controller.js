@@ -1,6 +1,7 @@
 app.controller('FileUploadController', function($scope, $location, $route, $routeParams, FileUploadService) {
 
 	$scope.current = {};
+	$scope.myFile = {};
 	$scope.current.fileUploadEnquiryDate =  new Date();
 	
 //	var cat = FileUploadService.getFileUploadSummary();
@@ -27,6 +28,13 @@ app.controller('FileUploadController', function($scope, $location, $route, $rout
     	}
     }
 
+   $scope.uploadFile = function(){
+       var file = $scope.myFile;
+       console.log('file is ' );
+       console.dir(file);
+       var uploadUrl = "/fileUpload";
+       fileUpload.uploadFileToUrl(file, uploadUrl);
+   };
 
 	function fileUploadPageScopeChanged($scope) {
 	    return " File Upload Enquiry Date: " + $scope.current.fileUploadEnquiryDate;
