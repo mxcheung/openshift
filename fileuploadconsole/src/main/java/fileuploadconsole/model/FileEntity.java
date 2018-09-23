@@ -18,9 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class FileEntity {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "id", updatable = false, nullable = false)
+    @GeneratedValue
     private Long id;
 	
 	private String fileName;
