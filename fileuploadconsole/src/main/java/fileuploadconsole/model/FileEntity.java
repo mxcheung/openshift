@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "fileName", "fileType", "description" })
+@JsonPropertyOrder({ "id", "fileName", "fileType", "description" })
 @Entity
 @Table(name = "fileitem")
 public class FileEntity {
@@ -26,7 +26,12 @@ public class FileEntity {
 	private String fileName;
 	private String fileType;
 	private String description;
-	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getFileName() {
 		return fileName;
 	}
