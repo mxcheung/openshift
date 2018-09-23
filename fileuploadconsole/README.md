@@ -6,3 +6,12 @@ As an added bonus, this repo can also be deployed directly as a docker container
 
 
 What, you don't have OpenShift 3 yet? Fix that immediately: www.openshift.org/vm
+
+
+https://github.com/tecong/openshift-demos
+
+https://github.com/jboss-developer/jboss-eap-quickstarts//tree/7.1.0.GA
+
+http://blog.codeleak.pl/2015/02/openshift-build-spring-boot-application.html
+
+https://github.com/kolorobot/openshift-wildfly-spring-boot
