@@ -6,6 +6,12 @@ app.service('FileUploadService', function($q, $http) {
 					'enquiryDate' : '2018-09-23'
 				}
 			});
-		}
+		},
+		
+	    deleteFileUpload : function (fileId) {
+	    	return $http.delete("report/"+fileId)
+	    }		
+		
+		
 	}
 });

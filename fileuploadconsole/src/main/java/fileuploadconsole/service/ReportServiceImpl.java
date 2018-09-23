@@ -30,10 +30,12 @@ public class ReportServiceImpl implements ReportService {
 	//	List<FileEntity> reports = getReports();
 		List<FileEntity> reports = fileRepository.findAll();
 		reportSummary.setReports(reports);
-		
-		
-		
 		return reportSummary;
+	}
+
+	@Override
+	public void delete(Long id) {
+		fileRepository.deleteById(id);
 	}
 
 	private List<FileEntity> getReports() {
@@ -53,5 +55,6 @@ public class ReportServiceImpl implements ReportService {
 		report.setDescription(description);
 		return report;
 	}
+
 
 }

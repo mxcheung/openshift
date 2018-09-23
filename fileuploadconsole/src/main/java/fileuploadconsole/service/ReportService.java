@@ -7,4 +7,6 @@ import fileuploadconsole.model.ReportSummary;
 public interface ReportService {
 
     ReportSummary getFileUploadSummary(LocalDate enquiryDate);
+
+	void delete(Long fileId);
 }
