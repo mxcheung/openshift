@@ -1,9 +1,10 @@
-app.service('FileUploadService', function($q, $http) {
+app.service('FileUploadService', function($q, $http, DatePickerService) {
 	return {
-		getFileUploadSummary : function() {
+		getFileUploadSummary : function(enquiryDate) {
 			return $http.get('./report/file-upload', {
 				params : {
-					'enquiryDate' : '2018-09-23'
+					'enquiryDate' : DatePickerService
+									.formatDateForRequest(enquiryDate)
 				}
 			});
 		},
@@ -15,3 +16,7 @@ app.service('FileUploadService', function($q, $http) {
 		
 	}
 });
+
+
+
+

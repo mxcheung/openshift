@@ -1,12 +1,14 @@
 package fileuploadconsole.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -21,6 +23,12 @@ public class FileEntity {
     @GeneratedValue
     private Long id;
 	
+    
+    @Column(name = "value_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate valueDate;
+
+    
 	private String fileName;
 	private String fileType;
 	private String description;
@@ -47,6 +55,12 @@ public class FileEntity {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public LocalDate getValueDate() {
+		return valueDate;
+	}
+	public void setValueDate(LocalDate valueDate) {
+		this.valueDate = valueDate;
 	}
 	
 

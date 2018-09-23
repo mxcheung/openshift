@@ -15,3 +15,5 @@ https://github.com/jboss-developer/jboss-eap-quickstarts//tree/7.1.0.GA
 http://blog.codeleak.pl/2015/02/openshift-build-spring-boot-application.html
 
 https://github.com/kolorobot/openshift-wildfly-spring-boot
+
+http://www.mastertheboss.com/jboss-frameworks/spring/springboot-with-jpa-on-wildfly
