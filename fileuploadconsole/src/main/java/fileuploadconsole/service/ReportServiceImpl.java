@@ -29,8 +29,8 @@ public class ReportServiceImpl implements ReportService {
 	public ReportSummary getFileUploadSummary(LocalDate enquiryDate) {
 		ReportSummary reportSummary = new ReportSummary();
 	//	List<FileEntity> reports = getReports();
-		List<FileEntity> reports = fileRepository.findAll();
-//		List<FileEntity> reports = fileRepository.findByValueDate(enquiryDate);
+//		List<FileEntity> reports = fileRepository.findAll();
+		List<FileEntity> reports = fileRepository.findByValueDate(enquiryDate);
 		
 		reportSummary.setReports(reports);
 		return reportSummary;
