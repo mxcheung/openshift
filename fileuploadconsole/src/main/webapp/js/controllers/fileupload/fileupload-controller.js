@@ -1,8 +1,48 @@
-app.controller('FileUploadController', function($scope, $location, $route, $routeParams, FileUploadService) {
+app.controller('FileUploadController', function($scope, $http, $location, $route, $routeParams, FileUploadService) {
 
 	$scope.current = {};
 	$scope.myFile = {};
 	$scope.current.fileUploadEnquiryDate =  new Date();
+    $scope.uploadResult ="";
+    $scope.myForm = {
+            description: "",
+            file,
+            files: []
+        }
+     
+    
+    $scope.doUploadFile = function() {  
+    	 
+        var url = "/report/rest/uploadMultiFiles";
+ 
+ 
+        var data = new FormData();
+ 
+        data.append("description", $scope.myForm.description);
+        data.append("file", $scope.myForm.file);
+        for (i = 0; i < $scope.myForm.files.length; i++) {
+            data.append("files", $scope.myForm.files[i]);
+        }
+ 
+        var config = {
+            transformRequest: angular.identity,
+            transformResponse: angular.identity,
+            headers: {
+                'Content-Type': undefined
+            }
+        }
+        
+ 
+        $http.post(url, data, config).then(
+            // Success
+            function(response) {
+                $scope.uploadResult =  response.data;
+            },
+            // Error
+            function(response) {
+                $scope.uploadResult = response.data;
+            });
+    };
 	
 //	var cat = FileUploadService.getFileUploadSummary();
 //	cat.then(function(response) {
@@ -33,7 +73,7 @@ app.controller('FileUploadController', function($scope, $location, $route, $rout
        console.log('file is ' );
        console.dir(file);
        var uploadUrl = "/fileUpload";
-       fileUpload.uploadFileToUrl(file, uploadUrl);
+       FileUploadService.uploadFileToUrl(file, uploadUrl);
    };
 
 	function fileUploadPageScopeChanged($scope) {

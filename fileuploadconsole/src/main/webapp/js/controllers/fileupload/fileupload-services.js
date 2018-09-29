@@ -14,14 +14,28 @@ app.service('FileUploadService', function($q, $http, DatePickerService) {
 	    },		
 		
 		uploadFileToUrl : function (file, uploadUrl) {
-			var fd = new FormData();
-	        fd.append('file', file);
-			return $http.post('./report/file-upload', fd,{
-				params : {
-					  transformRequest: angular.identity,
-			            headers: {'Content-Type': undefined}
-				}
-			});
+			var data = new FormData();
+			data.append('file', file);
+	        
+	        var config = {
+	                transformRequest: angular.identity,
+	                transformResponse: angular.identity,
+	                headers: {
+	                    'Content-Type': undefined
+	                }
+	            }
+	        
+	        var url = "./report/file-upload";
+	        
+	        return $http.post(url, data, config).then(
+	                // Success
+	                function(response) {
+	                    $scope.uploadResult =  response.data;
+	                },
+	                // Error
+	                function(response) {
+	                    $scope.uploadResult = response.data;
+	                });
 	    }		
 	}
 });

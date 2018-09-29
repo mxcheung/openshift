@@ -12,10 +12,9 @@
  */
 package fileuploadconsole;
 
-import java.sql.SQLException;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
 public class H2Config {
@@ -25,4 +24,12 @@ public class H2Config {
 		return org.h2.tools.Server.createWebServer("-web", "-webAllowOthers", "-webDaemon", "-webPort", "8082");
 	}
 */
+	
+	
+	@Bean(name = "multipartResolver")
+	public CommonsMultipartResolver multipartResolver() {
+	    CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+	    multipartResolver.setMaxUploadSize(100000);
+	    return multipartResolver;
+	}
 }

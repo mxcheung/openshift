@@ -6,6 +6,7 @@ var app = angular.module('ToDoListApp', [
 	'toDoListApp.w3TestDirective',
 	'myApp.tableDirective',
 	'myApp.hightableDirective',
+	'toDoListApp.fileModel',
 	'tableExample',
 	'myDirectives'
 	])
