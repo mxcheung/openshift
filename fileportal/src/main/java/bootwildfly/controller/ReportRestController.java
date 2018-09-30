@@ -21,8 +21,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import bootwildfly.model.FileEntity;
 import bootwildfly.model.ReportSummary;
 import bootwildfly.service.ReportService;
+import bootwildfly.storage.StorageService;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 @RestController
 @RequestMapping("report")
@@ -31,6 +49,9 @@ public class ReportRestController {
 	// Linux: /home/{user}/test
 	// Windows: C:/Users/{user}/test
 	private static String UPLOAD_DIR = System.getProperty("user.home") + "/test";
+	
+	@Autowired
+	StorageService storageService;
 
 	@Autowired
 	private ReportService reportService;
@@ -41,14 +62,30 @@ public class ReportRestController {
 		return reportService.getFileUploadSummary(enquiryDate);
 	}
 
+	
+	
+	
 	@RequestMapping(method = RequestMethod.DELETE, path = "/{fileId}")
 	public void deleteFileUpload(@PathVariable Long fileId) {
 		reportService.delete(fileId);
+	}
+	
+	
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/file-download/{fileId}")
+	public ResponseEntity<Resource> getFile(@PathVariable Long fileId) {
+    	FileEntity fileEntity = reportService.get(fileId);
+		String filename = fileEntity.getFileName();
+		Resource file = storageService.loadFile(filename);
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+				.body(file);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/file-upload")
 	public ReportSummary uploadFileUploadSummary( @RequestParam("description") String description,
 			@RequestParam("uploadfile") MultipartFile file) {
+		storageService.store(file);
 		return reportService.uploadFileUploadSummary(file,description);
 	}
 

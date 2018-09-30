@@ -50,7 +50,7 @@
 							<td>{{row.fileType}}</td>
 							<td>{{row.description}}</td>
 							<td><a
-								href="<c:url value='/download-document-${user.id}-${doc.id}' />"
+								href='/report/file-download/{{row.id}}'
 								class="btn btn-success custom-width">download</a></td>
 							<td class="text-center" ng-if="!current.displayDeleted"
 								ng-click="$event.stopPropagation();deleteFileUpload(row.id, $index)"><a

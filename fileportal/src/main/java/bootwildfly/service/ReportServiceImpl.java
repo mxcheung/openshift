@@ -73,4 +73,9 @@ public class ReportServiceImpl implements ReportService {
 		return null;
 	}
 
+	@Override
+	public FileEntity get(Long fileId) {
+		return fileRepository.findOne(fileId);
+	}
+
 }
