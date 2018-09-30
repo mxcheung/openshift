@@ -6,7 +6,7 @@
 	<groupId>com.javasampleapproach.uploadfile</groupId>
 	<artifactId>SpringBootAngularJSMultipartFile</artifactId>
 	<version>0.0.1</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>SpringBootAngularJSMultipartFile</name>
 	<description>SpringBootAngularJSMultipartFile</description>
