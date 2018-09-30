@@ -13,10 +13,15 @@ app.service('FileUploadService', function($q, $http, DatePickerService) {
 	    	return $http.delete("report/"+fileId)
 	    },		
 		
-		uploadFileToUrl : function (file, description, uploadUrl) {
+		uploadFileToUrl : function ( fileDTO) {
+			
+			
 			var data = new FormData();
-			data.append('uploadfile', file);
-			data.append('description', description);
+			data.append('applicationCd', fileDTO.applicationCd);
+			data.append('type', fileDTO.type);
+			data.append('subtype', fileDTO.subtype);
+			data.append('description', fileDTO.description);
+			data.append('uploadfile', fileDTO.file);
 	        
 	        var config = {
 	                transformRequest: angular.identity,

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import bootwildfly.controller.UploadForm;
 import bootwildfly.model.FileEntity;
 import bootwildfly.model.ReportSummary;
 import bootwildfly.repo.FileRepository;
@@ -47,16 +48,23 @@ public class ReportServiceImpl implements ReportService {
 		LocalDate yesterday = today.minusDays(1);
 		LocalDate twoDaysAgo = today.minusDays(2);
 
-		reports.add(getReport(today, "Sample_PDF.pdf", "application pdf", "Sample PDF file"));
-		reports.add(getReport(yesterday, "Sample_image.png", "image/png", "Picture file"));
-		reports.add(getReport(today, "Sample_zip.zip", "application/x-zip-compressed", "Zip file"));
-		reports.add(getReport(today, "Sample_text.txt", "text", "Text file"));
-		reports.add(getReport(today, "Sample_csv.csv", "csv", "csv file"));
+		reports.add(getReport(today, "App1", "DefaultType", "DefaultSubType", "Sample_PDF.pdf", "application pdf",
+				"Sample PDF file"));
+		reports.add(getReport(yesterday, "App1", "DefaultType", "DefaultSubType", "Sample_image.png", "image/png",
+				"Picture file"));
+		reports.add(getReport(today, "App1", "DefaultType", "DefaultSubType", "Sample_zip.zip",
+				"application/x-zip-compressed", "Zip file"));
+		reports.add(getReport(today, "App1", "DefaultType", "DefaultSubType", "Sample_text.txt", "text", "Text file"));
+		reports.add(getReport(today, "App1", "DefaultType", "DefaultSubType", "Sample_csv.csv", "csv", "csv file"));
 		return reports;
 	}
 
-	private FileEntity getReport(LocalDate valueDate, String fileName, String fileType, String description) {
+	private FileEntity getReport(LocalDate valueDate, String applicationCd, String type, String subtype,
+			String fileName, String fileType, String description) {
 		FileEntity report = new FileEntity();
+		report.setApplicationCd(applicationCd);
+		report.setType(type);
+		report.setSubtype(subtype);
 		report.setValueDate(valueDate);
 		report.setFileName(fileName);
 		report.setFileType(fileType);
@@ -65,10 +73,11 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public ReportSummary uploadFileUploadSummary(MultipartFile uploadfile, String description) {
+	public ReportSummary uploadFileUploadSummary(UploadForm uploadForm) {
 		LocalDate today = LocalDate.now();
-		FileEntity fileEntity = getReport(today, uploadfile.getOriginalFilename(), uploadfile.getContentType(),
-				description);
+		FileEntity fileEntity = getReport(today, uploadForm.getApplicationCd(), uploadForm.getType(),
+				uploadForm.getSubtype(), uploadForm.getFile().getOriginalFilename(),
+				uploadForm.getFile().getContentType(), uploadForm.getDescription());
 		fileRepository.save(fileEntity);
 		return null;
 	}

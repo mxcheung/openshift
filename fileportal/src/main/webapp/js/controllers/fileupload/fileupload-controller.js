@@ -66,11 +66,16 @@ app.controller('FileUploadController', function($scope, $http, $location, $route
 
    $scope.uploadFile = function(){
        var file = $scope.current.uploadedFile;
-       var description = $scope.current.fileDescription
+
        console.log('file is ' );
        console.dir(file);
-       var uploadUrl = "/fileUpload";
-       FileUploadService.uploadFileToUrl(file, description, uploadUrl);
+       var fileDTO = {};
+       fileDTO.applicationCd =  $scope.current.applicationCd;
+       fileDTO.type =  $scope.current.type;
+       fileDTO.subtype =  $scope.current.subtype;
+       fileDTO.description =  $scope.current.fileDescription;
+       fileDTO.file =  $scope.current.uploadedFile;
+       FileUploadService.uploadFileToUrl(fileDTO);
    };
 
 	function fileUploadPageScopeChanged($scope) {

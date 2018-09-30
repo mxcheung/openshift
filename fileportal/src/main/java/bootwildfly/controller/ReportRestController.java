@@ -83,12 +83,27 @@ public class ReportRestController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/file-upload")
-	public ReportSummary uploadFileUploadSummary( @RequestParam("description") String description,
+	public ReportSummary uploadFileUploadSummary( 
+			@RequestParam("applicationCd") String applicationCd,
+			@RequestParam("type") String type,
+			@RequestParam("subtype") String subtype,
+			@RequestParam("description") String description,
 			@RequestParam("uploadfile") MultipartFile file) {
 		storageService.store(file);
-		return reportService.uploadFileUploadSummary(file,description);
+		
+		UploadForm uploadForm = new UploadForm();
+		uploadForm.setApplicationCd(applicationCd);
+		uploadForm.setType(type);
+		uploadForm.setSubtype(subtype);
+		uploadForm.setDescription(description);
+		uploadForm.setFile(file);
+		
+		return reportService.uploadFileUploadSummary(uploadForm);
 	}
 
+	
+
+	
 	@RequestMapping(method = RequestMethod.POST, path = "/rest/uploadMultiFiles")
 	public ResponseEntity<?> uploadFileMulti(@ModelAttribute UploadForm form, final BindingResult bindingResult)
 			throws Exception {

@@ -2,8 +2,7 @@ package bootwildfly.service;
 
 import java.time.LocalDate;
 
-import org.springframework.web.multipart.MultipartFile;
-
+import bootwildfly.controller.UploadForm;
 import bootwildfly.model.FileEntity;
 import bootwildfly.model.ReportSummary;
 
@@ -13,7 +12,7 @@ public interface ReportService {
 
 	void delete(Long fileId);
 
-	ReportSummary uploadFileUploadSummary(MultipartFile uploadfile, String description);
-
 	FileEntity get(Long fileId);
+
+	ReportSummary uploadFileUploadSummary(UploadForm uploadForm);
 }
