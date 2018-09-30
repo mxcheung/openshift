@@ -38,11 +38,8 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
 				</exclusion>
-						<!-- 
-						</exclusion> <exclusion> <groupId>org.apache.tomcat.embed</groupId> 
-							<artifactId>tomcat-embed-websocket</artifactId> </exclusion>
-							
-							 -->
+				<!-- </exclusion> <exclusion> <groupId>org.apache.tomcat.embed</groupId> 
+					<artifactId>tomcat-embed-websocket</artifactId> </exclusion> -->
 			</exclusions>
 		</dependency>
 
@@ -59,8 +56,19 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<outputDirectory>target</outputDirectory>
+					<warName>ROOT</warName>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
+	
+	
 
 </project>
