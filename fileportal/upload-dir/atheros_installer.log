@@ -1,0 +1,58 @@
+C:\Users\MAX\AppData\Local\Temp\{E5FB62F5-A76F-4C8D-A7D0-6A9C2E18C858}\{A2AE9709-283B-4B48-AA34-729C070A62FB}\InstallHelper.dll file exists.
+Software\WSIMD\RefCounts\Lenovo reg key does not exist. g_bvLenovoExists = FALSE.
+SOFTWARE\Atheros\Jumpstart Installation Program reg key does not exist, setting g_bvIsJuStShared = FALSE.
+SOFTWARE\AthJSWCount reg key does not exist, setting g_bvIsJuStShared = FALSE.
+Command to launch is C:\Windows\SysWOW64\taskkill.exe /IM ACU.exe
+ExecBatCmd(): started. szParam=C:\Windows\SysWOW64\taskkill.exe /IM ACU.exe
+C:\Users\MAX\AppData\Local\Temp\{E5FB62F5-A76F-4C8D-A7D0-6A9C2E18C858}\{A2AE9709-283B-4B48-AA34-729C070A62FB}\batcmd.bat launched successfully
+ExecBatCmd(): finished.
+RemoveASCService() started.
+RemoveASCService() finished.
+SetJuStCount() started. 
+SOFTWARE\Atheros\Jumpstart Installation Program reg key does not exist.
+Creating the reg key for apps sharing, SOFTWARE\Atheros\Jumpstart Installation Program
+Setting registry: [SOFTWARE\Atheros\Jumpstart Installation Program]\JSInstallationCount=1
+SetJuStCount() finished. 
+JSWApps_Installing() started
+Ending the process jswscapp
+JSWApps_Installing() finished
+JSWApps_Installed() started
+Registering the JSW Apps dlls for JSW install.
+Listing File jswnwstore.dll to register.
+File to register is C:\Program Files (x86)\NETGEAR\WNA1100\jswnwstore.dll.
+Command to launch is C:\Windows\SysWOW64\regsvr32.exe /s "C:\Program Files (x86)\NETGEAR\WNA1100\jswnwstore.dll"
+Registering the jswnwstore.dll is successful.
+Command to launch is "C:\Program Files (x86)\NETGEAR\WNA1100\jswpsapi.exe" /Service
+COM Service registering of "C:\Program Files (x86)\NETGEAR\WNA1100\jswpsapi.exe" is successful.
+Command to launch is "C:\Program Files (x86)\NETGEAR\WNA1100\jswpbapi.exe" /Service
+COM Service registering of "C:\Program Files (x86)\NETGEAR\WNA1100\jswpbapi.exe" is successful.
+Registry: [SOFTWARE\Atheros\Common\ProfileStoreDlls\{30A5EE4E-FC53-4F27-9654-E3F1DC87DD8D}]\=Vista Native Wifi
+Registry: [SOFTWARE\Microsoft\Windows\CurrentVersion\Run]\jswtrayutil="C:\Program Files (x86)\NETGEAR\WNA1100\jswtrayutil.exe"
+Registry: [SOFTWARE\Atheros\Jumpstart Pushbutton Service\Managers\Jumpstart]\AppPath="C:\Program Files (x86)\NETGEAR\WNA1100\jswscapp.exe"
+Registry: [SOFTWARE\Atheros\Jumpstart]\AppPath="C:\Program Files (x86)\NETGEAR\WNA1100\jswscapp.exe"
+Registry: [SOFTWARE\Atheros\Jumpstart]\AppPath="C:\Program Files (x86)\NETGEAR\WNA1100\jswscapp.exe"
+JSWApps_Installed() finished
+JSWDriver_Installing() started
+JSWDriver_Installing() finished
+JSWDriver_Installed() started
+The JSW Authentication Interface(Intermediate Driver) install started
+RemoveInfFiles(): started. szParam=MS_NdisLwf
+The inf file name is C:\Windows\inf\oem0.inf
+The inf file name is C:\Windows\inf\oem1.inf
+The inf file name is C:\Windows\inf\oem10.inf
+The inf file name is C:\Windows\inf\oem11.inf
+The inf file name is C:\Windows\inf\oem12.inf
+The inf file name is C:\Windows\inf\oem2.inf
+The inf file name is C:\Windows\inf\oem3.inf
+The inf file name is C:\Windows\inf\oem4.inf
+The inf file name is C:\Windows\inf\oem5.inf
+The inf file name is C:\Windows\inf\oem6.inf
+The inf file name is C:\Windows\inf\oem7.inf
+The inf file name is C:\Windows\inf\oem8.inf
+The inf file name is C:\Windows\inf\oem9.inf
+RemoveInfFiles(): finished.
+Installing the JSW Authentication Interface: , C:\Program Files (x86)\NETGEAR\WNA1100\Driver\jswpslwfx.inf, MS_NdisLwf
+The return value from the JSW Authentication Interface install is 1
+The JSW Authentication Interface is installed successfully.
+The JSW Authentication Interface(Intermediate Driver) install finished
+JSWDriver_Installed() finished

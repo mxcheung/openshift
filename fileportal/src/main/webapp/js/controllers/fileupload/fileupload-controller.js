@@ -5,7 +5,9 @@ app.controller('FileUploadController', function($scope, $http, $location, $route
 	$scope.current.uploadedFile = {};
 	$scope.current.fileDescription = "";
     $scope.uploadResult ="";
-     
+    $scope.current.applicationCds = ["General", "Accounting", "Banking", "Reconciliation"];  
+    $scope.current.typeCds = ["Default Type", "Main", "Other", "Bank Statement"];  
+    $scope.current.subTypeCds = ["Default Sub Type", "Deposit", "GL", "Withdrawl",  "Other"];  
     
     $scope.doUploadFile = function() {  
     	 

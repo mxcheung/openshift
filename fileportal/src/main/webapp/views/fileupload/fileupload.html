@@ -7,21 +7,29 @@
 <body ng-app="jsaUploadFileApp">
 	<div class="generic-container">
 
-		<div class="form-inline col-md-6" ng-controller="DatePickerController">
-			<label>Enquiry Date</label>
-			<p class="input-group">
-				<input type="text" class="form-control" uib-datepicker-popup
-					ng-model="current.fileUploadEnquiryDate" is-open="popup.opened"
-					datepicker-options="dateOptions" show-button-bar="false"
-					ng-required="true" close-text="Close" readonly /> <span
-					class="input-group-btn">
-					<button type="button" class="btn btn-default" ng-click="open()">
-						<i class="glyphicon glyphicon-calendar"></i>
-					</button>
-				</span>
-			</p>
-		</div>
 		<div class="form-inline col-md-6"></div>
+				<div class="panel panel-default">
+
+			
+			<div class="form-inline col-md-6" ng-controller="DatePickerController">
+				<label>Enquiry Date</label>
+				<p class="input-group">
+					<input type="text" class="form-control" uib-datepicker-popup
+						ng-model="current.fileUploadEnquiryDate" is-open="popup.opened"
+						datepicker-options="dateOptions" show-button-bar="false"
+						ng-required="true" close-text="Close" readonly /> <span
+						class="input-group-btn">
+						<button type="button" class="btn btn-default" ng-click="open()">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</button>
+					</span>
+				</p>
+			</div>
+			
+			
+		</div>
+		<br>
+		
 		<div class="panel panel-default">
 			<!-- Default panel contents -->
 			<div class="panel-heading">
@@ -75,41 +83,53 @@
 
 					<br>
 
+					
 					<div class="row">
+
+
 						<div class="form-group col-md-6">
 							<label class="col-sm-3 control-lable" for="application Cd">Application Cd</label>
 							<div class="col-md-5">
-								<input  type="text"	ng-model="current.applicationCd"  />
+								<select ng-model="current.applicationCd" ng-options="appCd for appCd in current.applicationCds">
+								</select>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="row">
+
+						<div class="form-group col-md-6">
+							<label class="col-sm-3 control-lable" for="type">Type</label>
+							<div class="col-md-5">
+								<select ng-model="current.type" ng-options="appCd for appCd in current.typeCds">
+								</select>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row">
+
+						<div class="form-group col-md-6">
+							<label class="col-sm-3 control-lable" for="subtype">Sub Type</label>
+							<div class="col-md-5">
+								<select ng-model="current.subtype" ng-options="appCd for appCd in current.subTypeCds">
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label class="col-sm-3 control-lable" for="fileDescription">Description</label>
+							<div class="col-md-8">
+								<textarea  type="text"	ng-model="current.fileDescription" placeholder="Write task name or brief description." required></textarea>
 							</div>
 						</div>
 					</div>
 					
-					<div class="row">
-						<div class="form-group col-md-6">
-							<label class="col-sm-3 control-lable" for="type">Type</label>
-							<div class="col-md-5">
-								<input  type="text"	ng-model="current.type"  />
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="form-group col-md-6">
-							<label class="col-sm-3 control-lable" for="subtype">Sub Type</label>
-							<div class="col-md-5">
-								<input  type="text"	ng-model="current.subtype"  />
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="form-group col-md-6">
-							<label class="col-sm-3 control-lable" for="fileDescription">Description</label>
-							<div class="col-md-5">
-								<input  type="text"	ng-model="current.fileDescription"  />
-							</div>
-						</div>
-					</div>
+					
+					
 
 					<div class="row">
 						<div class="form-group col-md-6">
