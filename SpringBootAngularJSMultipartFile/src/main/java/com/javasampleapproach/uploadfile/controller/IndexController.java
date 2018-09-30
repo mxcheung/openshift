@@ -10,7 +10,7 @@ public class IndexController {
 
 	Logger log = LoggerFactory.getLogger(this.getClass().getName());
 	
-    @GetMapping("/")
+    @GetMapping("/blah")
     public String index() {
    		log.info("index start");
         return "upload";
