@@ -16,7 +16,7 @@ import bootwildfly.repo.FileRepository;
 public class ReportServiceImpl implements ReportService {
 
 	private final FileRepository fileRepository;
-	
+
 	@Autowired
 	public ReportServiceImpl(FileRepository fileRepository) {
 		super();
@@ -28,10 +28,10 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public ReportSummary getFileUploadSummary(LocalDate enquiryDate) {
 		ReportSummary reportSummary = new ReportSummary();
-	//	List<FileEntity> reports = getReports();
-//		List<FileEntity> reports = fileRepository.findAll();
+		// List<FileEntity> reports = getReports();
+		// List<FileEntity> reports = fileRepository.findAll();
 		List<FileEntity> reports = fileRepository.findByValueDate(enquiryDate);
-		
+
 		reportSummary.setReports(reports);
 		return reportSummary;
 	}
@@ -46,12 +46,12 @@ public class ReportServiceImpl implements ReportService {
 		LocalDate today = LocalDate.now();
 		LocalDate yesterday = today.minusDays(1);
 		LocalDate twoDaysAgo = today.minusDays(2);
-		
-		reports.add(getReport(today,"Sample_PDF.pdf", "application pdf", "Sample PDF file"));
-		reports.add(getReport(yesterday,"Sample_image.png", "image/png", "Picture file"));
-		reports.add(getReport(today,"Sample_zip.zip", "application/x-zip-compressed", "Zip file"));
-		reports.add(getReport(today,"Sample_text.txt", "text", "Text file"));
-		reports.add(getReport(today,"Sample_csv.csv", "csv", "csv file"));
+
+		reports.add(getReport(today, "Sample_PDF.pdf", "application pdf", "Sample PDF file"));
+		reports.add(getReport(yesterday, "Sample_image.png", "image/png", "Picture file"));
+		reports.add(getReport(today, "Sample_zip.zip", "application/x-zip-compressed", "Zip file"));
+		reports.add(getReport(today, "Sample_text.txt", "text", "Text file"));
+		reports.add(getReport(today, "Sample_csv.csv", "csv", "csv file"));
 		return reports;
 	}
 
@@ -65,10 +65,12 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public ReportSummary uploadFileUploadSummary(MultipartFile uploadfile) {
-		// TODO Auto-generated method stub
+	public ReportSummary uploadFileUploadSummary(MultipartFile uploadfile, String description) {
+		LocalDate today = LocalDate.now();
+		FileEntity fileEntity = getReport(today, uploadfile.getOriginalFilename(), uploadfile.getContentType(),
+				description);
+		fileRepository.save(fileEntity);
 		return null;
 	}
-
 
 }

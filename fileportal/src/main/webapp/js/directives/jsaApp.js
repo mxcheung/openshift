@@ -1,4 +1,4 @@
-var jsaApp = angular.module('jsaUploadFileApp', []);
+var jsaApp = angular.module('toDoListApp.fileModel', []);
 
 // DIRECTIVE - FILE MODEL
 jsaApp.directive('fileModel', ['$parse', function ($parse) {
@@ -16,3 +16,5 @@ jsaApp.directive('fileModel', ['$parse', function ($parse) {
        }
     };
 }]); 
+
+

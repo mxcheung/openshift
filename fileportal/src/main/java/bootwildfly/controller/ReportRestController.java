@@ -47,9 +47,9 @@ public class ReportRestController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/file-upload")
-	public ReportSummary uploadFileUploadSummary(@ModelAttribute UploadForm form) {
-		MultipartFile file = null;
-		return reportService.uploadFileUploadSummary(file);
+	public ReportSummary uploadFileUploadSummary( @RequestParam("description") String description,
+			@RequestParam("uploadfile") MultipartFile file) {
+		return reportService.uploadFileUploadSummary(file,description);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/rest/uploadMultiFiles")

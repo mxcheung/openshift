@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class IndexController {
 
 
-    @RequestMapping(value="/", method=RequestMethod.GET)
+    @RequestMapping(value="/index2/", method=RequestMethod.GET)
     public String index() {
         return "upload";
     }

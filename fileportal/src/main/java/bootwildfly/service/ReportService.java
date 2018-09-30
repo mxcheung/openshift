@@ -12,5 +12,5 @@ public interface ReportService {
 
 	void delete(Long fileId);
 
-	ReportSummary uploadFileUploadSummary(MultipartFile uploadfile);
+	ReportSummary uploadFileUploadSummary(MultipartFile uploadfile, String description);
 }
