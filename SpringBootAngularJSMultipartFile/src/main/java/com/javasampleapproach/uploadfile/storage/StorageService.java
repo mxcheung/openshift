@@ -18,8 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class StorageService {
 	
+	private static final String VAR_TMP_UPLOAD_DIR1 = "/var/tmp/upload-dir2";
+//	private static final String VAR_TMP_UPLOAD_DIR1 = "c://temp//upload-dir1//";
+
 	Logger log = LoggerFactory.getLogger(this.getClass().getName());
-	private final Path rootLocation = Paths.get("/var/tmp/upload-dir");
+	private final Path rootLocation = Paths.get(VAR_TMP_UPLOAD_DIR1);
 
 	public void store(MultipartFile file){
 		try {
