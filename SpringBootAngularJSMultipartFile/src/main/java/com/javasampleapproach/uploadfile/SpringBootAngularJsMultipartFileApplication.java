@@ -29,8 +29,8 @@ public class SpringBootAngularJsMultipartFileApplication extends SpringBootServl
 
 	@Override
 	public void run(String... args) throws Exception {
-	//	storageService.deleteAll();
-	//	storageService.init();
+		storageService.deleteAll();
+		storageService.init();
 	}
 
 }
