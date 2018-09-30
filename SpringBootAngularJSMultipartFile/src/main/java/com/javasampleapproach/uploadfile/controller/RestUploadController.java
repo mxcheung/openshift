@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -19,15 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
-import com.javasampleapproach.uploadfile.storage.StorageService;
-
 @RestController
 @RequestMapping("/api")
 public class RestUploadController {
 
-	@Autowired
-	StorageService storageService;
-	
 	Logger log = LoggerFactory.getLogger(this.getClass().getName());
 	
 	List<String> files = new ArrayList<String>();
@@ -39,7 +33,6 @@ public class RestUploadController {
 
     	try {
     		log.info("uploadFileMulti start");
-			storageService.store(file);
 			files.add(file.getOriginalFilename());
 			return "You successfully uploaded - " + file.getOriginalFilename();
 		} catch (Exception e) {
@@ -68,7 +61,7 @@ public class RestUploadController {
 	@GetMapping("/files/{filename:.+}")
 	public ResponseEntity<Resource> getFile(@PathVariable String filename) {
 		log.info("getFileex start");
-		Resource file = storageService.loadFile(filename);
+		Resource file = null;
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
 				.body(file);
