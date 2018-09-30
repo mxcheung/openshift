@@ -26,6 +26,11 @@ button.update-all-currencies-button {
     margin-bottom: 15px;
 }
 
+.floatRight{
+	float:right;
+	margin-right: 18px;
+}
+
 .btn.btn-submit-one-currency {
     background-color: #006480;
     color: white;
@@ -66,6 +71,12 @@ div.record-action-button-group label:after{
 
 .btn.btn-submit-all-currencies:active {
     background-color: #86b2c0;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
 }
 
 img.abn-logo {

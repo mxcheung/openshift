@@ -23,3 +23,6 @@ https://github.com/virusjambo/angularJs-file-upload-using-spring-/tree/master/Sp
 
 
 https://o7planning.org/en/11673/spring-boot-file-upload-with-angularjs-example
+
+
+https://grokonez.com/spring-framework/spring-boot/multipartfile-create-spring-angularjs-multipartfile-application-downloadupload-files-springboot-angularjs-bootstrap
