@@ -47,12 +47,16 @@ public class StorageService {
     }
     
     public void deleteAll() {
+    	log.info("deleteAll start");
         FileSystemUtils.deleteRecursively(rootLocation.toFile());
+    	log.info("deleteAll end");
     }
 
     public void init() {
         try {
+        	log.info("createDirectory start");
             Files.createDirectory(rootLocation);
+        	log.info("createDirectory end");
         } catch (IOException e) {
             throw new RuntimeException("Could not initialize storage!");
         }
