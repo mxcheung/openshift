@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bootwildfly.model.FileEntity;
 import bootwildfly.model.ReportSummary;
-import bootwildfly.service.DepositFilterCriteria;
+import bootwildfly.service.FileUploadFilterCriteria;
 import bootwildfly.service.ReportService;
 import bootwildfly.storage.StorageService;
 
@@ -61,12 +61,16 @@ public class ReportRestController {
 	@RequestMapping(params = { "enquiryDate" }, method = RequestMethod.GET, path = "/file-upload")
 	public ReportSummary getFileUploadSummary(
 		    @RequestParam("enquiryDate") @DateTimeFormat(iso = ISO.DATE) Optional<LocalDate> enquiryDate,
-			@RequestParam("applicationCd") Optional<String> applicationCd) {
+			@RequestParam("applicationCd") Optional<String> applicationCd,
+			@RequestParam("type")  Optional<String> type, 
+			@RequestParam("subtype")  Optional<String> subtype) {
 
-		DepositFilterCriteria depositFilterCriteria = new DepositFilterCriteria();
-		depositFilterCriteria.setValueDate(enquiryDate.orElse(null));
-		depositFilterCriteria.setApplicationCd(applicationCd.orElse(null));
-		return reportService.getFileUploadSummary(depositFilterCriteria);
+		FileUploadFilterCriteria fileUploadFilterCriteria = new FileUploadFilterCriteria();
+		fileUploadFilterCriteria.setValueDate(enquiryDate.orElse(null));
+		fileUploadFilterCriteria.setApplicationCd(applicationCd.orElse(null));
+		fileUploadFilterCriteria.setType(type.orElse(null));
+		fileUploadFilterCriteria.setSubtype(subtype.orElse(null));
+		return reportService.getFileUploadSummary(fileUploadFilterCriteria);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, path = "/{fileId}")

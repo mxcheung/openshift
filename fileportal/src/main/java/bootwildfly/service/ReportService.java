@@ -9,7 +9,7 @@ import bootwildfly.model.ReportSummary;
 
 public interface ReportService {
 
-    ReportSummary getFileUploadSummary(DepositFilterCriteria depositFilterCriteria);
+    ReportSummary getFileUploadSummary(FileUploadFilterCriteria depositFilterCriteria);
 
 	void delete(Long fileId);
 
@@ -17,5 +17,5 @@ public interface ReportService {
 
 	ReportSummary uploadFileUploadSummary(UploadForm uploadForm);
 
-	List<FileEntity> getRecordsByCriteria(DepositFilterCriteria criteria);
+	List<FileEntity> getRecordsByCriteria(FileUploadFilterCriteria criteria);
 }

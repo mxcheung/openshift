@@ -40,13 +40,13 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public ReportSummary getFileUploadSummary(DepositFilterCriteria depositFilterCriteria) {
+	public ReportSummary getFileUploadSummary(FileUploadFilterCriteria fileUploadFilterCriteria) {
 		ReportSummary reportSummary = new ReportSummary();
 		// List<FileEntity> reports = getReports();
 		// List<FileEntity> reports = fileRepository.findAll();
 //		List<FileEntity> reports = fileRepository.findByValueDate(enquiryDate);
 		
-		List<FileEntity> files = getRecordsByCriteria(depositFilterCriteria);
+		List<FileEntity> files = getRecordsByCriteria(fileUploadFilterCriteria);
 
 		reportSummary.setReports(files);
 		return reportSummary;
@@ -55,7 +55,7 @@ public class ReportServiceImpl implements ReportService {
 	
 	
 	  @Override
-	    public List<FileEntity> getRecordsByCriteria(DepositFilterCriteria criteria) {
+	    public List<FileEntity> getRecordsByCriteria(FileUploadFilterCriteria criteria) {
 	        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 	        CriteriaQuery<FileEntity> depositQuery = criteriaBuilder.createQuery(FileEntity.class);
 	        Root<FileEntity> deposit = depositQuery.from(FileEntity.class);
@@ -79,6 +79,16 @@ public class ReportServiceImpl implements ReportService {
 	        	predicates.add(criteriaBuilder.equal(deposit.get("applicationCd"), applicationCd));
 	        }
 	        
+	        String type = criteria.getType();
+	        if (type != null) {
+	        	predicates.add(criteriaBuilder.equal(deposit.get("type"), type));
+	        }
+
+	        String subtype = criteria.getSubtype();
+	        if (subtype != null) {
+	        	predicates.add(criteriaBuilder.equal(deposit.get("subtype"), subtype));
+	        }
+
 	        
 	        if (predicates.isEmpty()) {
 	            return depositList;
@@ -102,14 +112,11 @@ public class ReportServiceImpl implements ReportService {
 		LocalDate yesterday = today.minusDays(1);
 		LocalDate twoDaysAgo = today.minusDays(2);
 
-		reports.add(getReport(today, "General", "DefaultType", "DefaultSubType", "Sample_PDF.pdf", "application pdf",
-				"Sample PDF file"));
-		reports.add(getReport(yesterday, "Accounting", "DefaultType", "DefaultSubType", "Sample_image.png", "image/png",
-				"Picture file"));
-		reports.add(getReport(today, "Banking", "DefaultType", "DefaultSubType", "Sample_zip.zip",
-				"application/x-zip-compressed", "Zip file"));
-		reports.add(getReport(today, "Accounting", "DefaultType", "DefaultSubType", "Sample_text.txt", "text", "Text file"));
-		reports.add(getReport(today, "Reconciliation", "DefaultType", "DefaultSubType", "Sample_csv.csv", "csv", "csv file"));
+		reports.add(getReport(today, "General", "Default Type", "Deposit", "Sample_PDF.pdf", "application pdf",				"Sample PDF file"));
+		reports.add(getReport(yesterday, "Accounting", "Other", "Other", "Sample_image.png", "image/png",	"Picture file"));
+		reports.add(getReport(today, "Banking", "Default Type", "Withdrawl", "Sample_zip.zip",			"application/x-zip-compressed", "Zip file"));
+		reports.add(getReport(today, "Accounting", "Main", "Withdrawl", "Sample_text.txt", "text", "Text file"));
+		reports.add(getReport(today, "Reconciliation", "Other", "GL", "Sample_csv.csv", "csv", "csv file"));
 		return reports;
 	}
 

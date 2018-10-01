@@ -14,9 +14,8 @@
 
 
 			<div class="row">
-				<div class="form-inline col-md-6"
-					ng-controller="DatePickerController">
-					<label class="col-sm-3 control-lable" for="enquiryDate">Enquiry Date</label>
+				<div class="form-inline col-md-6"	ng-controller="DatePickerController">
+					<label class="col-sm-3 control-lable" for="enquiryDate">Enquiry	Date</label>
 					<p class="input-group">
 						<input type="text" class="form-control" uib-datepicker-popup
 							ng-model="current.fileUploadEnquiryDate" is-open="popup.opened"
@@ -31,38 +30,64 @@
 				</div>
 
 			</div>
-			<div class="row">
-
-				<div class="form-group col-md-6">
-					<label class="col-sm-3 control-lable" for="application Cd">Application Cd</label>
-					<div class="col-md-5">
-						<select ng-model="current.fileUploadApplicationCd"
-							ng-options="appCd for appCd in current.applicationCds">
-							<option value="">All</option>
-						</select>
-					</div>
-				</div>
-
-			</div>
-
 
 		</div>
+
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label class="col-sm-3 control-lable" for="type">Application</label>
+				<div class="col-md-5">
+					<select ng-model="current.fileUploadApplicationCd"
+						ng-options="appCd for appCd in current.applicationCds">
+						<option value="">All</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label class="col-sm-3 control-lable" for="type">Type</label>
+				<div class="col-md-5">
+					<select ng-model="current.type"
+						ng-options="appCd for appCd in current.typeCds">
+						<option value="">All</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<div class="form-group col-md-6">
+				<label class="col-sm-3 control-lable" for="subtype">Sub Type</label>
+				<div class="col-md-5">
+					<select ng-model="current.subtype"
+						ng-options="appCd for appCd in current.subTypeCds">
+							<option value="">All</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
 		<br>
 
 		<div class="panel panel-default">
 			<!-- Default panel contents -->
 			<div class="panel-heading">
 				<span class="lead">List of Documents</span>
-				<button type="button" style="display:inline-block;float:right"class="btn btn-default" ng-click="openAddDocumentModal()">Add Document</button>
+				<button type="button" style="display: inline-block; float: right"
+					class="btn btn-default" ng-click="openAddDocumentModal()">Add
+					Document</button>
 			</div>
 			<div class="tablecontainer">
 				<table st-table="data.reports" st-safe-src="rowCollection"
 					class="table table-striped">
 					<thead>
 						<tr>
-							<th colspan="12">
-								<input st-search="" class="form-control" placeholder="global search ..." type="text" />
-							</th>
+							<th colspan="12"><input st-search="" class="form-control"
+								placeholder="global search ..." type="text" /></th>
 						</tr>
 						<tr>
 							<th>No.</th>
@@ -108,7 +133,7 @@
 				</table>
 			</div>
 		</div>
-		
+
 	</div>
 </body>
 </html>

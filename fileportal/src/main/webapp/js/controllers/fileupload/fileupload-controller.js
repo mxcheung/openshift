@@ -49,7 +49,14 @@ app.controller('FileUploadController', function($scope, $http, $location, $route
 // })
 
 	 $scope.$watch(fileUploadPageScopeChanged, function() {
-		 FileUploadService.getFileUploadSummary($scope.current.fileUploadEnquiryDate, $scope.current.fileUploadApplicationCd)
+	       var fileDTO = {};
+	       fileDTO.applicationCd =  $scope.current.applicationCd;
+	       fileDTO.type =  $scope.current.type;
+	       fileDTO.subtype =  $scope.current.subtype;
+	       fileDTO.description =  $scope.current.fileDescription;
+	       fileDTO.file =  $scope.current.uploadedFile;
+		 FileUploadService.getFileUploadSummary($scope.current.fileUploadEnquiryDate, 
+				 fileDTO )
 				 .then(function success(response) {
 					 $scope.data = response.data;
 					 $scope.rowCollection = $scope.data.reports;
@@ -60,6 +67,7 @@ app.controller('FileUploadController', function($scope, $http, $location, $route
 		    });
 	
 	
+	 
    $scope.deleteFileUpload = function(fileId, index) {
     	if(confirm("Do you want to delete this file upload?")) {
     		FileUploadService.deleteFileUpload(fileId).then(function() {
@@ -97,13 +105,10 @@ app.controller('FileUploadController', function($scope, $http, $location, $route
    };
 
 	function fileUploadPageScopeChanged($scope) {
-	    return " File Upload Enquiry Date: " + $scope.current.fileUploadEnquiryDate;
-	};
-	
-	
-	function fileUploadPageScopeChanged($scope) {
 	    return " Display Value Date: " + $scope.current.fileUploadEnquiryDate +
 	    	   " Display Application Cd: " + $scope.current.fileUploadApplicationCd +
+	    	   " Display Type Cd: " + $scope.current.type +
+	    	   " Display Sub Type Cd: " + $scope.current.subtype +
 	    	   " File Upload Counter: " + $scope.current.fileUploadCounter; 
 	};
 	
@@ -123,7 +128,8 @@ app.controller('FileUploadModalController', function ($scope, $rootScope, $uibMo
 	
 	
 	$scope.create = function() {
-		// Keep track that we have submitted - so that we can show validation errors.
+		// Keep track that we have submitted - so that we can show validation
+		// errors.
         $scope.form.$submitted = true;
         // If the form isn't valid, return.
         if (!$scope.form.$valid) {
@@ -138,8 +144,8 @@ app.controller('FileUploadModalController', function ($scope, $rootScope, $uibMo
         fileDTO.file =  $scope.current.uploadedFile;
         FileUploadService.uploadFileToUrl(fileDTO)
         .then(function(response) {
+        	$scope.$parent.current.fileUploadCounter++;
             if (response.status == 200) {
-            	$scope.$parent.current.depositCounter++;
             	if($scope.form.$$element.context.keepOpen.checked) {
             		$scope.reset();
             	}

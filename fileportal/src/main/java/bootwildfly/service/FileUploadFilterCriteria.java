@@ -2,20 +2,33 @@ package bootwildfly.service;
 
 import java.time.LocalDate;
 
-public class DepositFilterCriteria {
+public class FileUploadFilterCriteria {
 
 	
     private String applicationCd;
+    private String type;
+    private String subtype;
 	private LocalDate valueDate;
 	private LocalDate valueDateFrom;
 	private LocalDate valueDateTo;
-	
 	
 	public String getApplicationCd() {
 		return applicationCd;
 	}
 	public void setApplicationCd(String applicationCd) {
 		this.applicationCd = applicationCd;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getSubtype() {
+		return subtype;
+	}
+	public void setSubtype(String subtype) {
+		this.subtype = subtype;
 	}
 	public LocalDate getValueDate() {
 		return valueDate;
@@ -35,6 +48,8 @@ public class DepositFilterCriteria {
 	public void setValueDateTo(LocalDate valueDateTo) {
 		this.valueDateTo = valueDateTo;
 	}
+	
+	
 
 
 }

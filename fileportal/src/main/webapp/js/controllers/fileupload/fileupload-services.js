@@ -1,13 +1,16 @@
 app.service('FileUploadService', function($q, $http, DatePickerService) {
 	return {
-		getFileUploadSummary : function(enquiryDate, applicationCd) {
+		getFileUploadSummary : function(enquiryDate, fileDTO) {
 			return $http.get('./report/file-upload', {
 				params : {
 					'enquiryDate' : DatePickerService.formatDateForRequest(enquiryDate),
-					'applicationCd' :applicationCd
+					'applicationCd' :fileDTO.applicationCd ,
+					'type' :fileDTO.type,
+					'subtype' :fileDTO.subtype
 				}
 			});
 		},
+		
 		
 	    deleteFileUpload : function (fileId) {
 	    	return $http.delete("report/"+fileId)
