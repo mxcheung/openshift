@@ -52,6 +52,7 @@ app.controller('FileUploadController', function($scope, $http, $location, $route
 		 FileUploadService.getFileUploadSummary($scope.current.fileUploadEnquiryDate, $scope.current.fileUploadApplicationCd)
 				 .then(function success(response) {
 					 $scope.data = response.data;
+					 $scope.rowCollection = $scope.data.reports;
 				 })
 				.catch(function error(rejection) {
 					$scope.error = rejection;

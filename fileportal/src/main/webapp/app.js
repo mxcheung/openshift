@@ -1,6 +1,7 @@
 var app = angular.module('ToDoListApp', [
 	'ngRoute',
 	'ngResource',
+	'smart-table',	
 	'ui.bootstrap', 
 	'ui.bootstrap.datetimepicker',
 	'toDoListApp.w3TestDirective',
