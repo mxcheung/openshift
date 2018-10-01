@@ -49,6 +49,7 @@
 							<th>File Type</th>
 							<th width="100"></th>
 							<th width="100"></th>
+							<th width="100"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -64,11 +65,17 @@
 							<td>{{row.fileType}}</td>
 							<td><a
 								href='/report/file-download/{{row.id}}'
-								class="btn btn-success custom-width">download</a></td>
+								class="glyphicon glyphicon-download">original</a></td>
+							<td><a
+								href='/report/file-download/{{row.id}}'
+								class="glyphicon glyphicon-download-alt">formatted</a></td>
 							<td class="text-center" ng-if="!current.displayDeleted"
 								ng-click="$event.stopPropagation();deleteFileUpload(row.id, $index)"><a
-								" class="btn btn-danger custom-width">delete</a></td>
+								class="glyphicon glyphicon-trash">delete</a></td>
 						</tr>
+						
+						
+						
 					</tbody>
 				</table>
 			</div>
