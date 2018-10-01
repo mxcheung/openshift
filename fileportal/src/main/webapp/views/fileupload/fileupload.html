@@ -8,10 +8,11 @@
 	<div class="generic-container">
 
 		<div class="form-inline col-md-6"></div>
-				<div class="panel panel-default">
+		<div class="panel panel-default">
 
-			
-			<div class="form-inline col-md-6" ng-controller="DatePickerController">
+
+			<div class="form-inline col-md-6"
+				ng-controller="DatePickerController">
 				<label>Enquiry Date</label>
 				<p class="input-group">
 					<input type="text" class="form-control" uib-datepicker-popup
@@ -25,11 +26,25 @@
 					</span>
 				</p>
 			</div>
-			
-			
+
+			<div class="row">
+
+				<div class="form-group col-md-6">
+					<label class="col-sm-3 control-lable" for="application Cd">Application
+						Cd</label>
+					<div class="col-md-5">
+						<select ng-model="current.fileUploadApplicationCd"	ng-options="appCd for appCd in current.applicationCds">
+							<option value="">All</option>
+						</select>
+					</div>
+				</div>
+
+			</div>
+
+
 		</div>
 		<br>
-		
+
 		<div class="panel panel-default">
 			<!-- Default panel contents -->
 			<div class="panel-heading">
@@ -44,9 +59,9 @@
 							<th>ApplicationCd</th>
 							<th>Type</th>
 							<th>SubType</th>
-							<th>Description</th>
 							<th>File Name</th>
 							<th>File Type</th>
+							<th>Description</th>
 							<th width="100"></th>
 							<th width="100"></th>
 							<th width="100"></th>
@@ -60,22 +75,20 @@
 							<td>{{row.applicationCd}}</td>
 							<td>{{row.type}}</td>
 							<td>{{row.subtype}}</td>
-							<td>{{row.description}}</td>
 							<td>{{row.fileName}}</td>
 							<td>{{row.fileType}}</td>
-							<td><a
-								href='/report/file-download/{{row.id}}'
+							<td>{{row.description}}</td>
+							<td><a href='/report/file-download/{{row.id}}'
 								class="glyphicon glyphicon-download">original</a></td>
-							<td><a
-								href='/report/file-download/{{row.id}}'
+							<td><a href='/report/file-download/{{row.id}}'
 								class="glyphicon glyphicon-download-alt">formatted</a></td>
 							<td class="text-center" ng-if="!current.displayDeleted"
 								ng-click="$event.stopPropagation();deleteFileUpload(row.id, $index)"><a
 								class="glyphicon glyphicon-trash">delete</a></td>
 						</tr>
-						
-						
-						
+
+
+
 					</tbody>
 				</table>
 			</div>
@@ -86,18 +99,20 @@
 				<span class="lead">Upload New Document</span>
 			</div>
 			<div class="uploadcontainer">
-				<form:form method="POST" 	class="form-horizontal">
+				<form:form method="POST" class="form-horizontal">
 
 					<br>
 
-					
+
 					<div class="row">
 
 
 						<div class="form-group col-md-6">
-							<label class="col-sm-3 control-lable" for="application Cd">Application Cd</label>
+							<label class="col-sm-3 control-lable" for="application Cd">Application
+								Cd</label>
 							<div class="col-md-5">
-								<select ng-model="current.applicationCd" ng-options="appCd for appCd in current.applicationCds">
+								<select ng-model="current.applicationCd"
+									ng-options="appCd for appCd in current.applicationCds">
 								</select>
 							</div>
 						</div>
@@ -109,7 +124,8 @@
 						<div class="form-group col-md-6">
 							<label class="col-sm-3 control-lable" for="type">Type</label>
 							<div class="col-md-5">
-								<select ng-model="current.type" ng-options="appCd for appCd in current.typeCds">
+								<select ng-model="current.type"
+									ng-options="appCd for appCd in current.typeCds">
 								</select>
 							</div>
 						</div>
@@ -119,9 +135,11 @@
 					<div class="row">
 
 						<div class="form-group col-md-6">
-							<label class="col-sm-3 control-lable" for="subtype">Sub Type</label>
+							<label class="col-sm-3 control-lable" for="subtype">Sub
+								Type</label>
 							<div class="col-md-5">
-								<select ng-model="current.subtype" ng-options="appCd for appCd in current.subTypeCds">
+								<select ng-model="current.subtype"
+									ng-options="appCd for appCd in current.subTypeCds">
 								</select>
 							</div>
 						</div>
@@ -130,28 +148,32 @@
 						<div class="form-group col-md-6">
 							<label class="col-sm-3 control-lable" for="fileDescription">Description</label>
 							<div class="col-md-8">
-								<textarea  type="text"	ng-model="current.fileDescription" placeholder="Write task name or brief description." required></textarea>
+								<textarea type="text" ng-model="current.fileDescription"
+									placeholder="Write task name or brief description." required></textarea>
 							</div>
 						</div>
 					</div>
-					
-					
-					
+
+
+
 
 					<div class="row">
 						<div class="form-group col-md-6">
-							<label class="col-md-3 control-lable" for="file">Upload a document</label>
+							<label class="col-md-3 control-lable" for="file">Upload a
+								document</label>
 							<div class="col-md-4">
-								<input class="form-control input-sm" type="file"	file-model="current.uploadedFile" placeholder="Upload File"></input>
+								<input class="form-control input-sm" type="file"
+									file-model="current.uploadedFile" placeholder="Upload File"></input>
 								<div class="has-error">
-									<form:errors path="file" class="help-inline"/>
+									<form:errors path="file" class="help-inline" />
 								</div>
 							</div>
 
 							<div class="form-actions floatRight">
-								<input type="submit" value="Upload"  ng-click="uploadFile()"  class="btn btn-primary btn-sm">
+								<input type="submit" value="Upload" ng-click="uploadFile()"
+									class="btn btn-primary btn-sm">
 							</div>
-							
+
 						</div>
 					</div>
 

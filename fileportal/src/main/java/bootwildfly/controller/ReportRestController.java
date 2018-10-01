@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bootwildfly.model.FileEntity;
 import bootwildfly.model.ReportSummary;
+import bootwildfly.service.DepositFilterCriteria;
 import bootwildfly.service.ReportService;
 import bootwildfly.storage.StorageService;
 
@@ -41,6 +42,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("report")
@@ -49,7 +51,7 @@ public class ReportRestController {
 	// Linux: /home/{user}/test
 	// Windows: C:/Users/{user}/test
 	private static String UPLOAD_DIR = System.getProperty("user.home") + "/test";
-	
+
 	@Autowired
 	StorageService storageService;
 
@@ -58,23 +60,23 @@ public class ReportRestController {
 
 	@RequestMapping(params = { "enquiryDate" }, method = RequestMethod.GET, path = "/file-upload")
 	public ReportSummary getFileUploadSummary(
-			@RequestParam("enquiryDate") @DateTimeFormat(iso = ISO.DATE) LocalDate enquiryDate) {
-		return reportService.getFileUploadSummary(enquiryDate);
+		    @RequestParam("enquiryDate") @DateTimeFormat(iso = ISO.DATE) Optional<LocalDate> enquiryDate,
+			@RequestParam("applicationCd") Optional<String> applicationCd) {
+
+		DepositFilterCriteria depositFilterCriteria = new DepositFilterCriteria();
+		depositFilterCriteria.setValueDate(enquiryDate.orElse(null));
+		depositFilterCriteria.setApplicationCd(applicationCd.orElse(null));
+		return reportService.getFileUploadSummary(depositFilterCriteria);
 	}
 
-	
-	
-	
 	@RequestMapping(method = RequestMethod.DELETE, path = "/{fileId}")
 	public void deleteFileUpload(@PathVariable Long fileId) {
 		reportService.delete(fileId);
 	}
-	
-	
-	
+
 	@RequestMapping(method = RequestMethod.GET, path = "/file-download/{fileId}")
 	public ResponseEntity<Resource> getFile(@PathVariable Long fileId) {
-    	FileEntity fileEntity = reportService.get(fileId);
+		FileEntity fileEntity = reportService.get(fileId);
 		String filename = fileEntity.getFileName();
 		Resource file = storageService.loadFile(filename);
 		return ResponseEntity.ok()
@@ -83,27 +85,21 @@ public class ReportRestController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/file-upload")
-	public ReportSummary uploadFileUploadSummary( 
-			@RequestParam("applicationCd") String applicationCd,
-			@RequestParam("type") String type,
-			@RequestParam("subtype") String subtype,
-			@RequestParam("description") String description,
-			@RequestParam("uploadfile") MultipartFile file) {
+	public ReportSummary uploadFileUploadSummary(@RequestParam("applicationCd") String applicationCd,
+			@RequestParam("type") String type, @RequestParam("subtype") String subtype,
+			@RequestParam("description") String description, @RequestParam("uploadfile") MultipartFile file) {
 		storageService.store(file);
-		
+
 		UploadForm uploadForm = new UploadForm();
 		uploadForm.setApplicationCd(applicationCd);
 		uploadForm.setType(type);
 		uploadForm.setSubtype(subtype);
 		uploadForm.setDescription(description);
 		uploadForm.setFile(file);
-		
+
 		return reportService.uploadFileUploadSummary(uploadForm);
 	}
 
-	
-
-	
 	@RequestMapping(method = RequestMethod.POST, path = "/rest/uploadMultiFiles")
 	public ResponseEntity<?> uploadFileMulti(@ModelAttribute UploadForm form, final BindingResult bindingResult)
 			throws Exception {

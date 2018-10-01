@@ -1,6 +1,7 @@
 app.controller('FileUploadController', function($scope, $http, $location, $route, $routeParams, FileUploadService) {
 
 	$scope.current = {};
+	$scope.current.fileUploadCounter = 0;
 	$scope.current.fileUploadEnquiryDate =  new Date();
 	$scope.current.uploadedFile = {};
 	$scope.current.fileDescription = "";
@@ -48,7 +49,7 @@ app.controller('FileUploadController', function($scope, $http, $location, $route
 //	})
 
 	 $scope.$watch(fileUploadPageScopeChanged, function() {
-		 FileUploadService.getFileUploadSummary($scope.current.fileUploadEnquiryDate)
+		 FileUploadService.getFileUploadSummary($scope.current.fileUploadEnquiryDate, $scope.current.fileUploadApplicationCd)
 				 .then(function success(response) {
 					 $scope.data = response.data;
 				 })
@@ -78,10 +79,18 @@ app.controller('FileUploadController', function($scope, $http, $location, $route
        fileDTO.description =  $scope.current.fileDescription;
        fileDTO.file =  $scope.current.uploadedFile;
        FileUploadService.uploadFileToUrl(fileDTO);
+   	   $scope.current.fileUploadCounter++;
    };
 
 	function fileUploadPageScopeChanged($scope) {
 	    return " File Upload Enquiry Date: " + $scope.current.fileUploadEnquiryDate;
+	};
+	
+	
+	function fileUploadPageScopeChanged($scope) {
+	    return " Display Value Date: " + $scope.current.fileUploadEnquiryDate +
+	    	   " Display Application Cd: " + $scope.current.fileUploadApplicationCd +
+	    	   " File Upload Counter: " + $scope.current.fileUploadCounter; 
 	};
 	
 });
