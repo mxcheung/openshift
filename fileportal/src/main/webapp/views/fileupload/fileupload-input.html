@@ -1,0 +1,87 @@
+<div class="container-fluid">
+	<form name="form" id="form" ng-app="jsaUploadFileApp">
+
+		<div class="row">
+			<h3 align="center">{{"Create Document" }}</h3>
+		</div>
+
+
+		<div class="generic-container">
+
+			<div class="form-inline col-md-6"></div>
+
+			<br>
+
+
+			<div class="row">
+				<div class="form-group col-md-12"
+					ng-class="{'has-error': hasError(form, form.applicationCd) }">
+					<label class="col-sm-3 control-lable"  for="application">Application</label>
+					<div class="col-md-5">
+						<select ng-model="current.applicationCd"
+							ng-options="appCd for appCd in current.applicationCds">
+						</select>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-sm-3 control-lable" for="type">Type</label>
+					<div class="col-md-5">
+						<select ng-model="current.type"
+							ng-options="appCd for appCd in current.typeCds">
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+
+				<div class="form-group col-md-12">
+					<label class="col-sm-3 control-lable" for="subtype">Sub	Type</label>
+					<div class="col-md-5">
+						<select ng-model="current.subtype"
+							ng-options="appCd for appCd in current.subTypeCds">
+						</select>
+					</div>
+				</div>
+			</div>			
+			
+
+
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-sm-3 control-lable" for="fileDescription">Description</label>
+					<div class="col-md-8">
+						<textarea type="text" ng-model="current.fileDescription"
+							placeholder="Write task name or brief description." required></textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="file">Upload document</label>
+					<div class="col-md-4">
+						<input class="form-control input-sm" type="file"
+							file-model="current.uploadedFile" placeholder="Upload File"></input>
+						<div class="has-error">
+							<form:errors path="file" class="help-inline" />
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+		<div class="modal-footer">
+			<input  type="checkbox" id="keepOpen" name="keepOpen" ng-true-value="'keepOpen'" ng-false-value="'close'"></input>
+			<label  for="keepOpen">Add more documents</label>
+		    <button  type="submit" class="btn btn-default" ng-click="create()" name="createDeposit" id="createDeposit" ng-disabled="form.$submitted && !form.$valid">Create Document</button>
+		    <button class="btn btn-default" name="close" id="close" ng-click="close()">Close</button>
+		</div>		
+	</form>
+</div>

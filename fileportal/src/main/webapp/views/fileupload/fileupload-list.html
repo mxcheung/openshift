@@ -1,0 +1,114 @@
+<cashmgmt-navbar></cashmgmt-navbar>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Upload/Download/Delete Documents</title>
+</head>
+
+<body ng-app="jsaUploadFileApp">
+	<div class="generic-container">
+
+		<div class="form-inline col-md-6"></div>
+		<div class="panel panel-default">
+
+
+			<div class="row">
+				<div class="form-inline col-md-6"
+					ng-controller="DatePickerController">
+					<label class="col-sm-3 control-lable" for="enquiryDate">Enquiry Date</label>
+					<p class="input-group">
+						<input type="text" class="form-control" uib-datepicker-popup
+							ng-model="current.fileUploadEnquiryDate" is-open="popup.opened"
+							datepicker-options="dateOptions" show-button-bar="false"
+							ng-required="true" close-text="Close" readonly /> <span
+							class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="open()">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					</p>
+				</div>
+
+			</div>
+			<div class="row">
+
+				<div class="form-group col-md-6">
+					<label class="col-sm-3 control-lable" for="application Cd">Application Cd</label>
+					<div class="col-md-5">
+						<select ng-model="current.fileUploadApplicationCd"
+							ng-options="appCd for appCd in current.applicationCds">
+							<option value="">All</option>
+						</select>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+		<br>
+
+		<div class="panel panel-default">
+			<!-- Default panel contents -->
+			<div class="panel-heading">
+				<span class="lead">List of Documents</span>
+				<button type="button" style="display:inline-block;float:right"class="btn btn-default" ng-click="openAddDocumentModal()">Add Document</button>
+			</div>
+			<div class="tablecontainer">
+				<table st-table="data.reports" st-safe-src="rowCollection"
+					class="table table-striped">
+					<thead>
+						<tr>
+							<th colspan="12">
+								<input st-search="" class="form-control" placeholder="global search ..." type="text" />
+							</th>
+						</tr>
+						<tr>
+							<th>No.</th>
+							<th>Value Date</th>
+							<th>ApplicationCd</th>
+							<th>Type</th>
+							<th>SubType</th>
+							<th>File Name</th>
+							<th>File Type</th>
+							<th>Description</th>
+							<th>Maker</th>
+							<th>Checker</th>
+							<th width="100"></th>
+							<th width="100"></th>
+							<th width="100"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="row in data.reports">
+
+							<td>{{$index+1}}</td>
+							<td>{{row.valueDate}}</td>
+							<td>{{row.applicationCd}}</td>
+							<td>{{row.type}}</td>
+							<td>{{row.subtype}}</td>
+							<td>{{row.fileName}}</td>
+							<td>{{row.fileType}}</td>
+							<td>{{row.description}}</td>
+							<td>{{row.maker}}</td>
+							<td></td>
+							<td><a href='/report/file-download/{{row.id}}'
+								class="glyphicon glyphicon-download">original</a></td>
+							<td><a href='/report/file-download/{{row.id}}'
+								class="glyphicon glyphicon-download-alt">formatted</a></td>
+							<td class="text-center" ng-if="!current.displayDeleted"
+								ng-click="$event.stopPropagation();deleteFileUpload(row.id, $index)"><a
+								class="glyphicon glyphicon-trash">delete</a></td>
+						</tr>
+
+
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

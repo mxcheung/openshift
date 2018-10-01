@@ -1,6 +1,7 @@
 package bootwildfly.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,7 +39,13 @@ public class FileEntity {
     
 	private String fileName;
 	private String fileType;
-	
+
+	private String maker;
+	private String checker;
+
+    @Column(name = "created_on")
+    private LocalDateTime createdOn;
+
 	public Long getId() {
 		return id;
 	}
@@ -86,6 +93,24 @@ public class FileEntity {
 	}
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
+	}
+	public LocalDateTime getCreatedOn() {
+		return createdOn;
+	}
+	public void setCreatedOn(LocalDateTime createdOn) {
+		this.createdOn = createdOn;
+	}
+	public String getMaker() {
+		return maker;
+	}
+	public void setMaker(String maker) {
+		this.maker = maker;
+	}
+	public String getChecker() {
+		return checker;
+	}
+	public void setChecker(String checker) {
+		this.checker = checker;
 	}
 	
 	

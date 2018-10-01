@@ -1,4 +1,4 @@
-app.controller('FileUploadController', function($scope, $http, $location, $route, $routeParams, FileUploadService) {
+app.controller('FileUploadController', function($scope, $http, $location, $route, $routeParams, FileUploadService, ModalService) {
 
 	$scope.current = {};
 	$scope.current.fileUploadCounter = 0;
@@ -43,10 +43,10 @@ app.controller('FileUploadController', function($scope, $http, $location, $route
             });
     };
 	
-//	var cat = FileUploadService.getFileUploadSummary();
-//	cat.then(function(response) {
-//		$scope.data = response.data;// don't forget "this" in the service
-//	})
+// var cat = FileUploadService.getFileUploadSummary();
+// cat.then(function(response) {
+// $scope.data = response.data;// don't forget "this" in the service
+// })
 
 	 $scope.$watch(fileUploadPageScopeChanged, function() {
 		 FileUploadService.getFileUploadSummary($scope.current.fileUploadEnquiryDate, $scope.current.fileUploadApplicationCd)
@@ -67,6 +67,19 @@ app.controller('FileUploadController', function($scope, $http, $location, $route
     		});
     	}
     }
+   
+   
+   $scope.openAddDocumentModal = function() {
+   	var depositDetails = {}
+   	depositDetails.isUpdate = false;
+   	var resolve = {
+   		depositDetails : depositDetails
+   	};
+   	var options = {
+   		windowClass : 'cashmgmt-small-modal-window'
+   	};
+       ModalService.getModalInstance('views/fileupload/fileupload-input.html', 'FileUploadModalController', resolve, options);
+   }
 
    $scope.uploadFile = function(){
        var file = $scope.current.uploadedFile;
@@ -93,5 +106,87 @@ app.controller('FileUploadController', function($scope, $http, $location, $route
 	    	   " Display Application Cd: " + $scope.current.fileUploadApplicationCd +
 	    	   " File Upload Counter: " + $scope.current.fileUploadCounter; 
 	};
+	
+});
+
+
+app.controller('FileUploadModalController', function ($scope, $rootScope, $uibModalInstance, FileUploadService, DatePickerService) {
+	$scope.current = {};
+	
+    $scope.current.applicationCds = ["General", "Accounting", "Banking", "Reconciliation"];  
+    $scope.current.typeCds = ["Default Type", "Main", "Other", "Bank Statement"];  
+    $scope.current.subTypeCds = ["Default Sub Type", "Deposit", "GL", "Withdrawl",  "Other"];  
+	    
+	$scope.close = function() {
+		$uibModalInstance.close(false);
+	}
+	
+	
+	$scope.create = function() {
+		// Keep track that we have submitted - so that we can show validation errors.
+        $scope.form.$submitted = true;
+        // If the form isn't valid, return.
+        if (!$scope.form.$valid) {
+            return;
+        }
+        
+        var fileDTO = {};
+        fileDTO.applicationCd =  $scope.current.applicationCd;
+        fileDTO.type =  $scope.current.type;
+        fileDTO.subtype =  $scope.current.subtype;
+        fileDTO.description =  $scope.current.fileDescription;
+        fileDTO.file =  $scope.current.uploadedFile;
+        FileUploadService.uploadFileToUrl(fileDTO)
+        .then(function(response) {
+            if (response.status == 200) {
+            	$scope.$parent.current.depositCounter++;
+            	if($scope.form.$$element.context.keepOpen.checked) {
+            		$scope.reset();
+            	}
+            	else {
+            		$scope.close();
+            	}
+            }
+        });
+	}
+	
+	
+	
+
+    
+    
+	$scope.update = function() {
+		// Keep track that we have submitted - so that we can show validation
+		// errors.
+        $scope.form.$submitted = true;
+        // If the form isn't valid, return.
+        if (!$scope.form.$valid) {
+            return;
+        }
+        
+        DepositService.updateDeposit($scope.current.deposit)
+        .then(function(response) {
+            if (response.status == 200) {
+            	$scope.$parent.current.depositCounter++;
+            	$scope.close()
+            }
+        });
+	}
+	
+	$scope.hasError = function(form, field) {
+		if(field) {
+			return (form.$submitted || field.$dirty) && field.$invalid;
+		}
+    }
+	
+
+	
+	
+	
+	$scope.reset = function() {
+        $scope.form.$setPristine();
+        $scope.current.deposit = {}
+        $scope.current.deposit.transactionDate = moment().toDate()
+    };
 	
 });

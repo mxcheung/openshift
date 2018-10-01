@@ -1,6 +1,7 @@
 package bootwildfly.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,6 +123,7 @@ public class ReportServiceImpl implements ReportService {
 		report.setFileName(fileName);
 		report.setFileType(fileType);
 		report.setDescription(description);
+		report.setMaker("user1");
 		return report;
 	}
 
@@ -131,6 +133,8 @@ public class ReportServiceImpl implements ReportService {
 		FileEntity fileEntity = getReport(today, uploadForm.getApplicationCd(), uploadForm.getType(),
 				uploadForm.getSubtype(), uploadForm.getFile().getOriginalFilename(),
 				uploadForm.getFile().getContentType(), uploadForm.getDescription());
+		fileEntity.setCreatedOn(LocalDateTime.now());
+		fileEntity.setMaker("user1");
 		fileRepository.save(fileEntity);
 		return null;
 	}

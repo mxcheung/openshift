@@ -8,6 +8,7 @@ var app = angular.module('ToDoListApp', [
 	'toDoListApp.fileModel',
 	'myApp.tableDirective',
 	'myApp.hightableDirective',
+	'cashmgmtApp.navbar',
 	'tableExample',
 	'myDirectives'
 	])
@@ -39,7 +40,7 @@ var app = angular.module('ToDoListApp', [
 				.when('/fileupload',
 				{
 					controller: 'FileUploadController',
-					templateUrl: '/views/fileupload/fileupload.html'
+					templateUrl: '/views/fileupload/fileupload-list.html'
 				})
 				.when('/demo',
 				{
