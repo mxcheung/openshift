@@ -1,0 +1,20 @@
+<div class="mg4" ng-controller="metricsController">
+    <div class="aBox pad4 bg5 bm10">
+        <span class="ex00">Metrics</span>&nbsp;
+        <span class="fmtValue">{{ url }}</span>&nbsp;
+        <span ng-show="wheel==true">&nbsp;<img src="/images/wheel.gif" border="0"/></span>
+    </div>
+
+    <table ng-show="error==false" class="tb01">
+        <tr ng-repeat="key in values">
+            
+            <td class="bmBox base wrapped">
+                <a ng-href="{{ url }}/{{ key }}" target="_details_" class="elm01"><span class="fs90">{{ key }}</span></a>
+            </td>
+            <td class="bmBox base"><span class="fs90">{{ data[key] }}</span></td>
+            <td class="bmBox base"><span class="ex01 fs90">{{ 1 + $index }}</span></td>
+
+        </tr>
+    </table>
+    <div ng-show="error==true" class="pad4 tm10"><span class="ex01"> {{ data }}</span></div>
+</div>
