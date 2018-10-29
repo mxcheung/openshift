@@ -61,6 +61,13 @@ public class RouteServiceImpl implements RouteService {
 	}
 
 
+	@Override
+	public void displayBalance(String balance) {
+		this.producerTemplate = camelContext.createProducerTemplate();
+		producerTemplate.sendBody("direct:test", balance);
+	}
+
+	
 	public void loadRoutes() {
 		try {
 			this.routeDefs = initRoute();

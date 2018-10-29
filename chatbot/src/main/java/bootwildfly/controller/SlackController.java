@@ -44,4 +44,30 @@ public class SlackController {
 		return new Greeting(counter.incrementAndGet(), String.format(template,
 				name));
 	}
+	
+	@ApiOperation(value = "greeting", nickname = "greeting", response = Greeting.class)
+	@ApiResponses({
+			@ApiResponse(code = 404, message = "Not found", response = Exception.class),
+			@ApiResponse(code = 200, message = "Request Successful", response = Greeting.class) })
+	@RequestMapping(value = "/slackbalance", method = RequestMethod.GET, produces = "application/json")
+	public Greeting balance(
+			@RequestParam(value = "name", defaultValue = "1.99") String balance) {
+		routeService.displayBalance(balance);
+		return new Greeting(counter.incrementAndGet(), String.format(template,
+				balance));
+	}
+	
+	
+
+	
+	@ApiOperation(value = "balance", nickname = "report bug", response = String.class)
+	@ApiResponses({
+			@ApiResponse(code = 404, message = "Not found", response = Exception.class),
+			@ApiResponse(code = 200, message = "Request Successful", response = String.class) })
+	@RequestMapping(value = "/reportbug", method = RequestMethod.POST, produces = "application/text")
+	public String reportbug(
+			@RequestParam(value = "name", defaultValue = "bug reported") String balance) {
+	
+		return "Thank you bug reported";
+	}
 }

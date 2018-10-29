@@ -16,5 +16,7 @@ public interface RouteService {
 	List<File> getFiles(String locationPattern) throws IOException;
 
 	void sayHello();
+
+	void displayBalance(String balance);
 	
 }
