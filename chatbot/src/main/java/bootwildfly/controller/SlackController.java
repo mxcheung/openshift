@@ -83,10 +83,10 @@ public class SlackController {
 			@RequestParam(value = "name", defaultValue = "bug reported") String balance) {
 		SlackMessage slackMessage = new SlackMessage();
 		slackMessage.setText("Would you like to play a game?");
-		List<Attachment> attachments = new  ArrayList<>();
-		Attachment attachment = Attachment();
-		attachments.add(attachment );
-		slackMessage.setAttachments(attachments );
+//		List<Attachment> attachments = new  ArrayList<>();
+//		Attachment attachment = Attachment();
+//		attachments.add(attachment );
+//		slackMessage.setAttachments(attachments );
 		return slackMessage;
 	}
 }
