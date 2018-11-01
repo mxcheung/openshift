@@ -1,7 +1,10 @@
 package bootwildfly.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.apache.camel.component.slack.helper.SlackMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -69,5 +72,21 @@ public class SlackController {
 			@RequestParam(value = "name", defaultValue = "bug reported") String balance) {
 	
 		return "Thank you bug reported";
+	}
+	
+	@ApiOperation(value = "balance", nickname = "report bug", response = String.class)
+	@ApiResponses({
+			@ApiResponse(code = 404, message = "Not found", response = Exception.class),
+			@ApiResponse(code = 200, message = "Request Successful", response = String.class) })
+	@RequestMapping(value = "/message", method = RequestMethod.POST, produces = "application/text")
+	public SlackMessage slackmsg(
+			@RequestParam(value = "name", defaultValue = "bug reported") String balance) {
+		SlackMessage slackMessage = new SlackMessage();
+		slackMessage.setText("Would you like to play a game?");
+		List<Attachment> attachments = new  ArrayList<>();
+		Attachment attachment = Attachment();
+		attachments.add(attachment );
+		slackMessage.setAttachments(attachments );
+		return slackMessage;
 	}
 }
