@@ -17,9 +17,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import bootwildfly.storage.StorageService;
 
-//@Configuration
-//@ComponentScan
-//@EnableAutoConfiguration
+@Configuration
+@ComponentScan
+@EnableAutoConfiguration
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer implements CommandLineRunner {
 
